@@ -29,6 +29,12 @@ and a settings/keybinding shell. Placeholder art throughout — systems first, a
 - **Headless verification harnesses** boot the real game without a window and assert on the actual
   rendered world — geometry, collision-vs-visual coincidence, draw-call budgets, occlusion behavior —
   with screenshot capture for human review. Visual work ships with rendered proof, not "looks right."
+- **Lua extension system — the base game is itself the first mod.** Following the Factorio model,
+  there is no privileged content in the engine: items, damage types, stats, tags, monsters, affixes,
+  vendors, and classes are all declared as Lua prototype data loaded through a sandboxed interpreter.
+  Adding a new damage type or stat requires zero engine edits. The sandbox removes capability rather
+  than scanning for abuse — no filesystem, no OS, no wall clock, and even Lua's built-in `math.random`
+  is stripped so mod code physically cannot introduce nondeterminism into the simulation.
 - **Architecture Decision Records**: 170+ ADRs document every load-bearing decision; docs and code
   are updated in the same change, never allowed to drift.
 - **Performance as a design constraint**: pooled VFX, shared materials, budgeted dynamic lights,
