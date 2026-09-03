@@ -14,6 +14,8 @@ rolls, rarity tiers, and identification. Monster packs with champion and rare ra
 multi-zone overworld with towns, vendors, and a stash, plus saves and a full settings and
 keybinding shell. All of it runs on placeholder art. Systems come first, art passes later.
 
+![Town at evening, with a vendor and a portal home](images/town-evening.jpg)
+
 | | |
 |---|---|
 | ![Cliff dressing](images/cliff-rock-dressing.png) | ![Ledge courses](images/ledge-courses.png) |
