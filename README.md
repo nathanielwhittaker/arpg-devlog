@@ -18,6 +18,11 @@ keybinding shell. All of it runs on placeholder art. Systems come first, art pas
 
 | | |
 |---|---|
+| ![Inventory and equipment](images/inventory.jpg) | ![Character sheet and a magic weapon](images/character-sheet.jpg) |
+| ![Lightning beam in a dungeon](images/dungeon-beam.jpg) | ![Chain lightning through a spider pack](images/dungeon-chain.jpg) |
+
+| | |
+|---|---|
 | ![Cliff dressing](images/cliff-rock-dressing.png) | ![Ledge courses](images/ledge-courses.png) |
 
 ## How it's built
