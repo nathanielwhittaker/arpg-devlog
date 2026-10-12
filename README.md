@@ -4,7 +4,7 @@ I'm building an isometric action RPG in the Diablo II / Path of Exile lineage. S
 written in C# on .NET with Godot 4 handling the rendering. The game's source is private for now,
 so this repo is the public record of what it is and how it's put together.
 
-![A caster burns a skeleton with a fire nova, then clears a torch-lit cave with chain lightning](images/caster-cave.gif)
+![A caster burns a skeleton with a lightning skill converted to fire, then clears a torch-lit cave with chain lightning](images/caster-cave.gif)
 
 | | |
 |---|---|
