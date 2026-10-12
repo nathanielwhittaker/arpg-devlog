@@ -4,7 +4,11 @@ I'm building an isometric action RPG in the Diablo II / Path of Exile lineage. S
 written in C# on .NET with Godot 4 handling the rendering. The game's source is private for now,
 so this repo is the public record of what it is and how it's put together.
 
-![Overworld at the cliff boundary](images/world-cliff-boundary.png)
+![A caster burns a skeleton with a fire nova, then clears a torch-lit cave with chain lightning](images/caster-cave.gif)
+
+| | |
+|---|---|
+| ![Melee against skeletons and a spider, then a Thundering Mouthpiece warcry item](images/warcry-field.gif) | ![Leaving town into the outskirts: skeleton archers, gold, and a Page of Frost Conversion](images/outskirts-loot.gif) |
 
 ## What's playable today
 
@@ -28,6 +32,8 @@ art. Systems come first, art passes later.
 | | |
 |---|---|
 | ![Cliff dressing](images/cliff-rock-dressing.png) | ![Ledge courses](images/ledge-courses.png) |
+
+![Overworld at the cliff boundary](images/world-cliff-boundary.png)
 
 ## How it's built
 
