@@ -72,9 +72,10 @@ at my last job and my measured ticket throughput went up 4.1x.
 
 ![Class select](images/class-select.png)
 
-## 16-23 October 2026: patch 0.2.0, the first alpha build
+## 16-23 October 2026: patch 0.2.0, the second alpha build
 
-The first alpha build went out on 23 October as patch 0.2.0. The week's work:
+Patch 0.2.0, the second alpha build, is ready. It covers everything since the 0.1.0 build on 16
+October:
 
 - Maps, the first endgame. A map is an item that stores a zone and an area level (1, then 5 to 80
   in steps of 5). You place it in the town Map Device to open a portal into a generated run.
@@ -89,8 +90,8 @@ The first alpha build went out on 23 October as patch 0.2.0. The week's work:
   equipped weapon. Combat and Marksman Manuals grant attacks the same way spell books grant
   spells. The first two are Arrowfall, a bow volley that rains 12 arrows on the aim point, and
   Leap Slam, which hits and stuns everything around the landing. Weapon attacks can now crit at a
-  150% base multiplier; spells still never do. Spells and ranged attacks no longer root you, so
-  you cast and shoot while moving at half speed. Melee still roots.
+  150% base multiplier; spells still never do. Spells and ranged attacks no longer root you (more
+  on that below).
 - Items to item level 80. Every weapon, armour, shield, belt and crown line gets new tiers up to
   item level 80. Weapon base damage is cut from item level 25 up (item level 34-80 bases now deal
   70% of their old damage), and the flat damage prefixes on weapons are rescaled.
@@ -104,9 +105,58 @@ fixed-point sim, and it went through the same agent workflow: test-first lanes t
 failing test before the code, and cold code reviews where the reviewer sees only the diff and the
 requirements, not the reasoning behind them. The sim suite is now at about 17,500 tests.
 
+## How the spell system works
+
+Spells don't come from gear. A spell comes from a book, and you socket the book into a Skill Socket
+node on the passive tree. The spell's level is the number of allocated passives within that
+socket's radius, capped at 20, so where you put the book and how you path the tree around it is
+the main build decision. A respec re-levels the spell straight away, and "+ to Level" stats on gear
+and notables can push it past 20.
+
+Pages are the support layer. A book has page slots; you open it and drop pages in, and each one
+changes how the spell is delivered or what it does. A conversion page turns the spell's elemental
+damage into one element. Chaining makes each hit jump on to the nearest new enemy. Volley adds
+projectiles, and a beam fires them side by side. Projectile Nova fires the spell as a ring around
+you, Spiral sends one projectile spiralling outward, and Beam turns it into a beam. Meteor and
+Shards replace the delivery outright, so the spell falls from the sky as one big strike or a shower
+of shards. Pages apply in slot order, so every combination has a defined result, and they cost no
+mana.
+
+Pages can be swapped at any time, including while the book sits in the tree, and the tooltip always
+shows what the spell will do with the pages it has now. The same book can be a chaining fire beam
+one minute and a meteor the next.
+
+![A lightning beam converted to fire, with the Chaining and Volley pages](images/1-fire-beam-chain-volley.gif)
+*A lightning beam converted to fire, with the Chaining and Volley pages.*
+
+![Opening the passive tree, moving pages in and out of the socketed book, then casting the changed spell](images/2-page-swap-result.gif)
+*Moving pages in and out of the socketed book on the passive tree, then casting the changed spell.*
+
+| | |
+|---|---|
+| ![Swapping in the Page of Shards, then the spell rains down as a shard shower](images/3-swap-to-shards.gif) | ![Swapping in the Page of Meteor, then the spell drops as meteors](images/4-swap-to-meteor.gif) |
+| *Page of Shards: the spell rains down as a shard shower.* | *Page of Meteor: the spell drops as meteors.* |
+
+![Swapping in the Page of Projectile Nova, then the spell fires in a ring](images/5-swap-to-projectile-nova.gif)
+*Page of Projectile Nova: the spell fires in a ring.*
+
+## Attacking and casting while moving
+
+Spells and ranged attacks no longer root you. You keep moving at half speed while you cast or
+shoot, and warcries work on the move too. The character always faces the cursor: the torso aims
+while the legs walk wherever you're actually going. The default gait is a jog, which drops to a
+walk while a skill is in use. Melee attacks still root you, because a swing lands from the spot
+where it started.
+
+Before this, every fireball stopped you dead, which fought the way a ranged build wants to play.
+Kiting, backing away from a pack while firing into it, is most of how a caster or an archer
+survives, and now it works. I want combat to feel snappy, not floaty, and splitting movement from
+aiming means the character answers both inputs at once instead of planting, turning, and then
+acting.
+
 ## Status
 
-In active development; the first alpha build is out. Currently in the works:
+In active development; patch 0.2.0, the second alpha build, is ready. Currently in the works:
 
 - Monster pathfinding on a shared flow field, so packs route around buildings instead of getting
   stuck.
